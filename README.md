@@ -1,6 +1,6 @@
-/test - тест роутов, контроллеров и представлений
-/form - форма с отправкой POST-запроса и сохранение полученных данных в файл JSON
-/data - вывод полученных данных в виде таблицы
+/test - тест роутов, контроллеров и представлений</br>
+/form - форма с отправкой POST-запроса и сохранение полученных данных в файл JSON</br>
+/data - вывод полученных данных в виде таблицы</br>
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
