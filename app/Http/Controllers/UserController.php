@@ -1,9 +1,10 @@
 <?php
-
+#task Laravel: working with data
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -26,35 +27,55 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validatedUserData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:6',
         ]);
     
-        $user = User::create($validatedData);
+        $user = User::create($validatedUserData);
     
-        return redirect()->route('users.show', $user->id);
+        $validatedData = $request->validate([
+            'age' => 'required|integer',
+            'profession' => 'required|string|max:255',
+        ]);
+    
+        $user->data()->create($validatedData);
+    
+        //dd($validatedUserData, $validatedData, $user);
+    
+        return redirect()->route('users.show', $user->id)->with('success', 'User created successfully!');
     }
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('data')->findOrFail($id);
         return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $validatedUserData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:6',
+            'password' => 'required|string|min:6',
         ]);
 
         $user = User::findOrFail($id);
-        $user->update($validatedData);
+        $user->update($validatedUserData);
+    
+        $validatedData = $request->validate([
+            'age' => 'required|integer',
+            'profession' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('users.show', $user->id);
+        if ($user->data) {
+            $user->data->update($validatedData);
+        } else {
+            $user->data()->create($validatedData);
+        }
+
+        return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully!');
     }
 
     public function destroy($id)
@@ -63,6 +84,12 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function showApi($id)
+    {
+        $user = User::with('data')->findOrFail($id);
+        return new UserResource($user);
     }
 }
 

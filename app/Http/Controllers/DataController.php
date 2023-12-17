@@ -1,9 +1,10 @@
 <?php
-
+#task Laravel: working with data
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Data;
+use App\Http\Resources\DataResource;
 
 class DataController extends Controller
 {
@@ -48,6 +49,18 @@ class DataController extends Controller
         $data = Data::findOrFail($id);
         $data->delete();
         return redirect()->route('data.index');
+    }
+
+    public function showAdultData()
+    {
+        $adultData = Data::adults()->get();
+        return view('users.adults', compact('adultData'));
+    }
+
+    public function showApi($id)
+    {
+        $data = Data::findOrFail($id);
+        return new DataResource($data);
     }
 }
 

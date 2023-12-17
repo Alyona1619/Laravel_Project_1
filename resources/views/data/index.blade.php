@@ -1,3 +1,4 @@
+<!-- task Laravel: working with data -->
 @extends('layouts.app')
 
 @section('content')

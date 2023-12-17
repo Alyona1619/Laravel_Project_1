@@ -1,7 +1,12 @@
+# Задание Laravel: Начало (v1.0)
 /test - тест роутов, контроллеров и представлений</br>
 /form - форма с отправкой POST-запроса и сохранение полученных данных в файл JSON</br>
-/data - вывод полученных данных в виде таблицы</br>
+/show_data - вывод полученных данных в виде таблицы</br>
 
+
+# Задание Laravel: Работа с данными (v2.1)
+### Demonstration:
+[https://youtu.be/zwgZb1cA2Zo](https://youtu.be/zwgZb1cA2Zo)
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 

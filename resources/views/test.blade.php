@@ -1,3 +1,5 @@
+<!-- task Laravel: Beginning -->
+
 @extends('layouts.app')
 
 @section('content')

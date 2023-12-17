@@ -1,12 +1,11 @@
 <?php
+#task Laravel: working with data
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 
 class User extends Authenticatable
 {
@@ -21,6 +20,8 @@ class User extends Authenticatable
 
     public function data()
     {
-        return $this->hasMany(Data::class);
+        return $this->hasOne(Data::class, 'user_id'); 
     }
+
 }
+
